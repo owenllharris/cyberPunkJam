@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Code/RecieveText.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Code/CheckForPlayer.cs">
     <Files>
-      <File FileName="Assets/Code/Blink.cs" Line="15" Column="40" />
-      <File FileName="Assets/Code/RecieveText.cs" Line="12" Column="4" />
+      <File FileName="Assets/Code/CheckForPlayer.cs" Line="27" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

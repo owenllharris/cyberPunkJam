@@ -3,7 +3,11 @@ using System.Collections;
 
 public class RecieveText : MonoBehaviour {
 
-	private string input;
+	public int characterLimit = 50;
+	public UpdateText lineAbove;
+	public CommandProcessor cp;
+
+	private string inputText = "";
 	private GUIText myText;
 
 	void Start()
@@ -13,10 +17,37 @@ public class RecieveText : MonoBehaviour {
 
 	void Update () 
 	{
-		if( Input.anyKeyDown )
+		if( Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace) )
 		{
-			input = input + Input.inputString;
-			myText.text = input;
+			if( inputText.Length > 0 )
+			{
+				updateConsole(inputText.Remove(  inputText.Length - 1));
+			}
 		}
+		else if( Input.GetKeyDown( KeyCode.Return ) )
+		{
+			processCommand();
+		}
+		else if( Input.anyKeyDown )
+		{
+			if( inputText.Length <= characterLimit )
+			{
+				updateConsole(inputText + Input.inputString);
+			}
+		}
+	}
+
+	void processCommand()
+	{
+		cp.Command( inputText );
+
+		lineAbove.updateText( inputText );
+		updateConsole("");
+	}
+
+	void updateConsole( string newText)
+	{
+		inputText = newText;
+		myText.text = "> " + inputText;
 	}
 }
