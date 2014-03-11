@@ -22,6 +22,8 @@ public class Patroll : MonoBehaviour {
 	{
 		if(patroll)
 			transform.Translate( direction * speed * Time.deltaTime );
+
+
 		if( Vector2.Distance( transform.position, waypoints[nextWaypoint].position ) < 0.05f )
 		{
 			atWaypoint();

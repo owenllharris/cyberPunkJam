@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Reporter : MonoBehaviour 
 {
+	public AudioClip ErrorSound;
+
 	public static Reporter instance;
 
 	private GUIText myText;
@@ -25,6 +27,7 @@ public class Reporter : MonoBehaviour
 	{
 		myText.text = message;
 		myText.enabled = true;
+		audio.PlayOneShot(ErrorSound);
 
 		StartCoroutine(Blink(goAway));
 	}
@@ -35,7 +38,7 @@ public class Reporter : MonoBehaviour
 		myText.enabled = false;
 		yield return new WaitForSeconds( 0.3f );
 		myText.enabled = true;
-
+		audio.PlayOneShot(ErrorSound);
 		if( goAway )
 		{
 			yield return new WaitForSeconds( 0.3f );

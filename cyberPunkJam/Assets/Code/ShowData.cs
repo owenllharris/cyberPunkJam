@@ -6,7 +6,7 @@ public class ShowData : MonoBehaviour
 	public static ShowData instance;
 
 	private GUIText guiText;
-	private int currentData;
+	public int currentData;
 
 
 	void Awake()

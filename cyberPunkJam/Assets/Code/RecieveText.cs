@@ -3,12 +3,23 @@ using System.Collections;
 
 public class RecieveText : MonoBehaviour {
 
+	public static RecieveText instance;
+
 	public int characterLimit = 50;
 	public UpdateText lineAbove;
 	public CommandProcessor cp;
 
 	private string inputText = "";
 	private GUIText myText;
+
+	void Awake()
+	{
+		if( RecieveText.instance == null )
+			RecieveText.instance = this;
+		else
+			Destroy(gameObject);
+
+	}
 
 	void Start()
 	{

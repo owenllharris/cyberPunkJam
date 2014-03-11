@@ -1,14 +1,18 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CheckForPlayer : MonoBehaviour {
 
 	private GameObject player;
 	private Patroll p;
+	private GoToObject gto;
+
+	public bool canSee = false;
 	void Start () 
 	{
 		player = GameObject.Find("Hero");
 		p = GetComponent<Patroll>();
+		gto = GetComponent<GoToObject>();
 	}
 	
 
@@ -18,14 +22,31 @@ public class CheckForPlayer : MonoBehaviour {
 
 		if(hit.collider.name == "Hero")
 		{
-			Debug.Log("I can see him");
+
+			p.patroll = false;
+
+			if( canSee == false )
+			{
+				if( gto.path.Count == 0 )
+					gto.goTo ( player.transform );
+
+
+			}
+
+			canSee = true;
 
 		}
 		else
 		{
-			Debug.Log("Where is her?");
+			canSee = false;
 		}
 
 		Debug.DrawRay(transform.position, player.transform.position - transform.position);
+	}
+
+	void checkAgain()
+	{
+		if( !canSee )
+			gto.goTo(p.waypoints[0]);
 	}
 }

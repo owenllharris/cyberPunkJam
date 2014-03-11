@@ -4,6 +4,7 @@ using System.Collections;
 public class CommandProcessor : MonoBehaviour 
 {
 	public GameObject Hero;
+	public GUIText helpGUI;
 	public float movment = 0.5f;
 
 	private AccessData heroAccessData;
@@ -27,6 +28,8 @@ public class CommandProcessor : MonoBehaviour
 			move ( -Vector2.up );
 		else if( command.Contains("access") )
 			tryAccess();
+		else if( command.Contains("help") )
+			help();
 		else
 			Reporter.instance.ShowMessage("Unknown Command", true);
 	}
@@ -40,13 +43,20 @@ public class CommandProcessor : MonoBehaviour
 		{
 			Hero.transform.position += (direction * movment);
 			heroAccessData.canAccess = false;
+			heroAccessData.ap = null;
 		}
 
 		else if( hit.collider.isTrigger == true )
 		{
 			Hero.transform.position += (direction * movment);
 			heroAccessData.canAccess = true;
+			heroAccessData.ap = hit.collider.GetComponent<AccessPoint>();
 		}
+	}
+
+	void help()
+	{
+		helpGUI.enabled = true;
 	}
 
 	private void tryAccess()
